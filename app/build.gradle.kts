@@ -71,6 +71,9 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
 
+    // coil
+    implementation(libs.coil)
+
     // Bundles
     implementation(libs.bundles.compose.libraries)
 
