@@ -10,6 +10,6 @@ interface MealsRepository {
 
     suspend fun searchRecipesByName(name: String): Flow<DataState<List<Recipe>>>
 
-    suspend fun getRecipesByIngredient(ingredient: String): Flow<DataState<List<Recipe>>>
+    suspend fun getRecipesByFirstLetter(letter: String): Flow<DataState<List<Recipe>>>
 
 }
