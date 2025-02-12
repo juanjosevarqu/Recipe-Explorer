@@ -1,10 +1,12 @@
 package com.varqulabs.recipexplorer.core.domain
 
-sealed class DataState<T>(
-    val data: T? = null,
-    val message: String? = null
-) {
-    class Loading<T> : DataState<T>()
-    class Success<T>(data: T) : DataState<T>(data)
-    class Error<T>(message: String, data: T? = null) : DataState<T>(data, message)
+sealed class DataState<out T> {
+
+    data object Loading : DataState<Nothing>()
+
+    data class Success<out T>(val data: T) : DataState<T>()
+
+    data class Error(val message: String, val code: Int? = null) : DataState<Nothing>()
+
 }
+
