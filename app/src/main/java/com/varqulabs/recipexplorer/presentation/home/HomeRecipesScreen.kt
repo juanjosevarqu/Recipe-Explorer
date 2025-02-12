@@ -58,7 +58,7 @@ fun HomeRecipesScreen(
 
     LaunchedEffect(querySearch) {
         if (querySearch.isNotEmpty()) {
-            delay(400L)
+            delay(350L)
             eventHandler(OnSearchRecipe(querySearch))
         }
     }
