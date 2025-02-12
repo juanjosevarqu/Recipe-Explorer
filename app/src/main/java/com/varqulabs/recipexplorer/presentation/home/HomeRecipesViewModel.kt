@@ -28,14 +28,17 @@ class HomeRecipesViewModel @Inject constructor(
         when (event) {
             is Loading -> updateUi { copy(isLoading = event.isLoading) }
             is OnClickRecipe -> emitNavigationToDetail(event.recipeId)
-            is Init -> searchRecipesByFirstLetter("c")
-            is OnSearchRecipe -> searchRecipesByName(event.query)
+            is Init -> searchRecipesByFirstLetterInit("c")
+            is OnSearchRecipe -> {
+                if (event.query.length == 1) searchRecipesByFirstLetter(event.query)
+                else searchRecipesByName(event.query)
+            }
         }
     }
 
     private fun emitNavigationToDetail(recipeId: String) = viewModelScope.emitEffect(NavigateToRecipeDetail(recipeId))
 
-    private fun searchRecipesByFirstLetter(letter: String) {
+    private fun searchRecipesByFirstLetterInit(letter: String) {
         viewModelScope.launch(Dispatchers.IO) {
             getRecipesByFirstLetter(letter).collectLatest { data ->
                 updateUi {
@@ -49,13 +52,27 @@ class HomeRecipesViewModel @Inject constructor(
         }
     }
 
+    private fun searchRecipesByFirstLetter(letter: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            getRecipesByFirstLetter(letter).collectLatest { data ->
+                updateUi {
+                    when (data) {
+                        is DataState.Loading -> copy(isLoading = true)
+                        is DataState.Success -> copy(recipesFiltered = data.data)
+                        is DataState.Error -> copy(errorMsg = data.message)
+                    }
+                }
+            }
+        }
+    }
+
     private fun searchRecipesByName(name: String) {
         viewModelScope.launch(Dispatchers.IO) {
             getRecipesByName(name).collectLatest { data ->
                 updateUi {
                     when (data) {
                         is DataState.Loading -> copy(isLoading = true)
-                        is DataState.Success -> copy(recipes = data.data)
+                        is DataState.Success -> copy(recipesFiltered = data.data)
                         is DataState.Error -> copy(errorMsg = data.message)
                     }
                 }

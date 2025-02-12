@@ -8,5 +8,6 @@ data class HomeRecipesState(
     val reload: Boolean = true,
     val isLoading: Boolean = false,
     val errorMsg: String? = null,
-    val recipes: List<Recipe> = emptyList()
+    val recipes: List<Recipe> = emptyList(),
+    val recipesFiltered: List<Recipe> = emptyList(),
 )
