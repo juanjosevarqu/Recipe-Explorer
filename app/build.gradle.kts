@@ -67,6 +67,10 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
 
+    // okHTTP
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
+
     // Bundles
     implementation(libs.bundles.compose.libraries)
 
