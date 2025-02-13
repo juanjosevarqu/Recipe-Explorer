@@ -44,8 +44,8 @@ class HomeRecipesViewModel @Inject constructor(
                 updateUi {
                     when (data) {
                         is DataState.Loading -> copy(isLoading = true)
-                        is DataState.Success -> copy(recipes = data.data).also { disableReload() }
-                        is DataState.Error -> copy(errorMsg = data.message)
+                        is DataState.Success -> copy(recipes = data.data, isLoading = false).also { disableReload() }
+                        is DataState.Error -> copy(errorMsg = data.message, isLoading = false)
                     }
                 }
             }
@@ -58,8 +58,8 @@ class HomeRecipesViewModel @Inject constructor(
                 updateUi {
                     when (data) {
                         is DataState.Loading -> copy(isLoading = true)
-                        is DataState.Success -> copy(recipesFiltered = data.data)
-                        is DataState.Error -> copy(errorMsg = data.message)
+                        is DataState.Success -> copy(recipesFiltered = data.data, isLoading = false)
+                        is DataState.Error -> copy(errorMsg = data.message, isLoading = false)
                     }
                 }
             }
@@ -72,8 +72,8 @@ class HomeRecipesViewModel @Inject constructor(
                 updateUi {
                     when (data) {
                         is DataState.Loading -> copy(isLoading = true)
-                        is DataState.Success -> copy(recipesFiltered = data.data)
-                        is DataState.Error -> copy(errorMsg = data.message)
+                        is DataState.Success -> copy(recipesFiltered = data.data, isLoading = false)
+                        is DataState.Error -> copy(errorMsg = data.message, isLoading = false)
                     }
                 }
             }
