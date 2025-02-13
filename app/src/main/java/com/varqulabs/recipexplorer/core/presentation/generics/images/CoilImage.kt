@@ -10,10 +10,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -28,7 +28,7 @@ fun CoilImage(
     defaultImage: Int = R.drawable.round_set_meal_24,
     alignment: Alignment = Alignment.Center,
     contentScale: ContentScale = ContentScale.Fit,
-    roundedCorner: Dp = 8.dp,
+    shape: Shape = RoundedCornerShape(8.dp),
     colorFilter: ColorFilter? = null,
 ) {
 
@@ -43,7 +43,7 @@ fun CoilImage(
         contentScale = contentScale,
         alignment = alignment,
         modifier = modifier
-            .clip(RoundedCornerShape(roundedCorner))
+            .clip(shape)
             .then(
                 if (showShimmer) Modifier.shimmerEffect()
                 else Modifier
