@@ -28,7 +28,7 @@ class HomeRecipesViewModel @Inject constructor(
         when (event) {
             is Loading -> updateUi { copy(isLoading = event.isLoading) }
             is OnClickRecipe -> emitNavigationToDetail(event.recipeId)
-            is Init -> searchRecipesByFirstLetterInit("c")
+            is Init -> searchRecipesByFirstLetterInit("b")
             is OnSearchRecipe -> {
                 if (event.query.length == 1) searchRecipesByFirstLetter(event.query)
                 else searchRecipesByName(event.query)
@@ -72,7 +72,7 @@ class HomeRecipesViewModel @Inject constructor(
                 updateUi {
                     when (data) {
                         is DataState.Loading -> copy(isLoading = true)
-                        is DataState.Success -> copy(recipesFiltered = data.data, isLoading = false)
+                        is DataState.Success -> copy(recipesFiltered = if (data.data.isEmpty()) emptyList() else data.data, isLoading = false)
                         is DataState.Error -> copy(errorMsg = data.message, isLoading = false)
                     }
                 }

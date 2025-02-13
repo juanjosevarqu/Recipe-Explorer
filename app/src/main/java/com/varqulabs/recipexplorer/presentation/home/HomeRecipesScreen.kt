@@ -15,6 +15,7 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.DockedSearchBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
@@ -27,11 +28,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.varqulabs.recipexplorer.core.presentation.generics.top_bars.DefaultAppBar
 import com.varqulabs.recipexplorer.core.presentation.utils.composables.screenHeight
 import com.varqulabs.recipexplorer.core.presentation.utils.modifier.clickableSingle
+import com.varqulabs.recipexplorer.domain.model.Recipe
 import com.varqulabs.recipexplorer.presentation.home.HomeRecipesEvent.Init
 import com.varqulabs.recipexplorer.presentation.home.HomeRecipesEvent.Loading
 import com.varqulabs.recipexplorer.presentation.home.HomeRecipesEvent.OnClickRecipe
@@ -58,7 +63,7 @@ fun HomeRecipesScreen(
 
     LaunchedEffect(querySearch) {
         if (querySearch.isNotEmpty()) {
-            delay(350L)
+            delay(300L)
             eventHandler(OnSearchRecipe(querySearch))
         }
     }
@@ -86,7 +91,7 @@ fun HomeRecipesScreen(
                         onSearch = { focusManager.clearFocus() },
                         expanded = isActive,
                         onExpandedChange = { isActive = it },
-                        placeholder = { Text("Busca el nombre de una receta") },
+                        placeholder = { Text("Buscar: chocolate, pan...") },
                         leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
                         trailingIcon =
                         when {
@@ -117,7 +122,9 @@ fun HomeRecipesScreen(
             ) {
                 SearchRecipeContent(
                     modifier = Modifier,
-                    state = state,
+                    recipesFiltered = state.recipesFiltered,
+                    isLoading = state.isLoading,
+                    focusManager = focusManager,
                     eventHandler = eventHandler
                 )
             }
@@ -144,9 +151,9 @@ private fun HomeRecipesContent(
     LazyColumn(
         modifier = modifier
             .padding(
-                start = 8.dp,
-                end = 8.dp,
-                top = paddingValues.calculateTopPadding() / 1.6f
+                start = 4.dp,
+                end = 4.dp,
+                top = paddingValues.calculateTopPadding() / 1.5f
             ),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
@@ -171,11 +178,13 @@ private fun HomeRecipesContent(
 @Composable
 private fun SearchRecipeContent(
     modifier: Modifier,
-    state: HomeRecipesState,
+    recipesFiltered: List<Recipe>,
+    isLoading: Boolean,
+    focusManager: FocusManager,
     eventHandler: (HomeRecipesEvent) -> Unit
 ) {
     when {
-        state.isLoading && state.recipesFiltered.isEmpty() -> {
+        isLoading && recipesFiltered.isEmpty() -> {
             LazyColumn(
                 modifier = modifier
                     .fillMaxWidth()
@@ -193,7 +202,17 @@ private fun SearchRecipeContent(
                 }
             }
         }
-        state.recipesFiltered.isNotEmpty() -> {
+        !isLoading && recipesFiltered.isEmpty() -> {
+            Text(
+                modifier = modifier.fillMaxWidth().padding(top = 24.dp),
+                text = "Animate a explorar otras recetas!",
+                maxLines = 3,
+                overflow = TextOverflow.Ellipsis,
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.titleMedium
+            )
+        }
+        else -> {
             LazyColumn(
                 modifier = modifier
                     .fillMaxWidth()
@@ -204,13 +223,14 @@ private fun SearchRecipeContent(
                     vertical = 12.dp,
                 )
             ) {
-                items(state.recipesFiltered, key = { it.hashCode() }) {
+                items(recipesFiltered, key = { it.hashCode() }) {
                     RecipeItem(
                         modifier = Modifier.fillMaxWidth(),
                         name = it.name,
                         imageUrl = it.imageUrl,
                         description = it.instructions
                     ) {
+                        focusManager.clearFocus()
                         eventHandler(OnClickRecipe(it.id))
                     }
                 }
