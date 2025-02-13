@@ -75,6 +75,11 @@ dependencies {
     // coil
     implementation(libs.coil)
 
+    // Google Maps
+    implementation(libs.maps.compose)
+    implementation(libs.play.services.location)
+    implementation(libs.play.services.maps)
+
     // Bundles
     implementation(libs.bundles.compose.libraries)
 

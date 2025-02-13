@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Recipe Explorer</string>
+    <string name="google_maps_api_key"></string><!--Aqui tu key de GoogleMaps-->
 </resources>
