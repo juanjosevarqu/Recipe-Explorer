@@ -4,12 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.toRoute
 import com.varqulabs.recipexplorer.navigation.utils.navigateBack
 import com.varqulabs.recipexplorer.navigation.utils.navigateTo
 import com.varqulabs.recipexplorer.presentation.detail.navigation.detailRoute
 import com.varqulabs.recipexplorer.presentation.home.navigation.homeRoute
+import com.varqulabs.recipexplorer.presentation.map.navigation.mapRoute
 
 @Composable
 fun AppNavGraph(
@@ -35,8 +34,8 @@ fun AppNavGraph(
             }
         )
 
-        composable<Routes.MapLocation> { backStackEntry ->
-            val areaName = backStackEntry.toRoute<Routes.MapLocation>().areaName
-        }
+        mapRoute(
+            onBack = { navController.navigateBack() }
+        )
     }
 }
