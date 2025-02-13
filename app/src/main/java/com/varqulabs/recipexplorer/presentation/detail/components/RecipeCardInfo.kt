@@ -38,6 +38,11 @@ fun RecipeCardInfo(
             )
 
             Text(
+                text = "Origen: ${recipe.area}",
+                style = MaterialTheme.typography.titleMedium
+            )
+
+            Text(
                 text = "Instrucciones:",
                 style = MaterialTheme.typography.titleMedium
             )
