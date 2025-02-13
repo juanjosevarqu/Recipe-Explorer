@@ -6,6 +6,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
+import com.varqulabs.recipexplorer.navigation.utils.navigateBack
+import com.varqulabs.recipexplorer.navigation.utils.navigateTo
+import com.varqulabs.recipexplorer.presentation.detail.navigation.detailRoute
 import com.varqulabs.recipexplorer.presentation.home.navigation.homeRoute
 
 @Composable
@@ -21,13 +24,19 @@ fun AppNavGraph(
 
         homeRoute(
             openRecipeDetail = { recipeId ->
-                navController.navigate(Routes.RecipeDetail(recipeId))
+                navController.navigateTo(Routes.RecipeDetail(recipeId))
             }
         )
 
-        composable<Routes.RecipeDetail> { backStackEntry ->
-            val recipeId = backStackEntry.toRoute<Routes.RecipeDetail>().recipeId
+        detailRoute(
+            onBack = { navController.navigateBack() },
+            onOpenRecipeLocation = { areaName ->
+                navController.navigateTo(Routes.MapLocation(areaName))
+            }
+        )
 
+        composable<Routes.MapLocation> { backStackEntry ->
+            val areaName = backStackEntry.toRoute<Routes.MapLocation>().areaName
         }
     }
 }
