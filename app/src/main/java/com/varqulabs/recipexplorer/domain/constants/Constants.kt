@@ -1,4 +1,4 @@
-package com.varqulabs.recipexplorer.core.domain
+package com.varqulabs.recipexplorer.domain.constants
 
 val areaCoordinates = mapOf(
     "American" to Pair(37.7749, -122.4194),
