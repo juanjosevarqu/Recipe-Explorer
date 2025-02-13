@@ -12,6 +12,6 @@ sealed class Routes {
     data class RecipeDetail(val recipeId: String) : Routes()
 
     @Serializable
-    data class Maps(val latitude: Double, val longitude: Double, val areaName: String? = null) : Routes()
+    data class MapLocation(val areaName: String) : Routes()
 
 }
