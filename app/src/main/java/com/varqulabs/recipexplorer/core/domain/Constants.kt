@@ -1,0 +1,33 @@
+package com.varqulabs.recipexplorer.core.domain
+
+val areaCoordinates = mapOf(
+    "American" to Pair(37.7749, -122.4194),
+    "British" to Pair(51.5074, -0.1278),
+    "Canadian" to Pair(45.4215, -75.6972),
+    "Chinese" to Pair(39.9042, 116.4074),
+    "Croatian" to Pair(45.8150, 15.9819),
+    "Dutch" to Pair(52.3676, 4.9041),
+    "Egyptian" to Pair(30.0444, 31.2357),
+    "Filipino" to Pair(14.5995, 120.9842),
+    "French" to Pair(48.8566, 2.3522),
+    "Greek" to Pair(37.9838, 23.7275),
+    "Indian" to Pair(28.6139, 77.2090),
+    "Irish" to Pair(53.3498, -6.2603),
+    "Italian" to Pair(41.9028, 12.4964),
+    "Jamaican" to Pair(18.1096, -77.2975),
+    "Japanese" to Pair(35.6895, 139.6917),
+    "Kenyan" to Pair(-1.286389, 36.817223),
+    "Malaysian" to Pair(3.1390, 101.6869),
+    "Mexican" to Pair(19.4326, -99.1332),
+    "Moroccan" to Pair(33.5731, -7.5898),
+    "Polish" to Pair(52.2298, 21.0122),
+    "Portuguese" to Pair(38.7169, -9.1399),
+    "Russian" to Pair(55.7558, 37.6173),
+    "Spanish" to Pair(40.4168, -3.7038),
+    "Thai" to Pair(13.7563, 100.5018),
+    "Tunisian" to Pair(36.8065, 10.1815),
+    "Turkish" to Pair(41.0082, 28.9784),
+    "Ukrainian" to Pair(50.4501, 30.5234),
+    "Uruguayan" to Pair(-34.9011, -56.1645),
+    "Vietnamese" to Pair(21.0285, 105.8544)
+)
