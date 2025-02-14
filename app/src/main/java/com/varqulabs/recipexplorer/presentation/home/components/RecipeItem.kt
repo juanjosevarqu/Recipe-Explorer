@@ -15,7 +15,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -34,9 +33,6 @@ fun RecipeItem(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
 ) {
-
-    val randomMaxLines = remember { (3..5).random() }
-
     Column(
         modifier = modifier
             .border(
@@ -68,7 +64,6 @@ fun RecipeItem(
         ItemDescription(
             modifier = Modifier.fillMaxWidth(),
             description = description,
-            maxLines = randomMaxLines
         )
     }
 }
@@ -77,7 +72,6 @@ fun RecipeItem(
 private fun ItemDescription(
     modifier: Modifier = Modifier,
     description: String,
-    maxLines: Int,
 ) {
     Row(
         modifier = modifier,
@@ -85,7 +79,7 @@ private fun ItemDescription(
 
         Text(
             text = description,
-            maxLines = maxLines,
+            maxLines = 4,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.weight(1f),
             style = MaterialTheme.typography.labelMedium
