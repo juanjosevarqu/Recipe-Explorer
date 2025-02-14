@@ -58,7 +58,7 @@ class HomeRecipesViewModel @Inject constructor(
                 updateUi {
                     when (data) {
                         is DataState.Loading -> copy(isLoading = true)
-                        is DataState.Success -> copy(recipesFiltered = data.data, isLoading = false)
+                        is DataState.Success -> copy(recipesFiltered = data.data.ifEmpty { emptyList() }, isLoading = false)
                         is DataState.Error -> copy(errorMsg = data.message, isLoading = false)
                     }
                 }
@@ -72,7 +72,7 @@ class HomeRecipesViewModel @Inject constructor(
                 updateUi {
                     when (data) {
                         is DataState.Loading -> copy(isLoading = true)
-                        is DataState.Success -> copy(recipesFiltered = if (data.data.isEmpty()) emptyList() else data.data, isLoading = false)
+                        is DataState.Success -> copy(recipesFiltered = data.data.ifEmpty { emptyList() }, isLoading = false)
                         is DataState.Error -> copy(errorMsg = data.message, isLoading = false)
                     }
                 }

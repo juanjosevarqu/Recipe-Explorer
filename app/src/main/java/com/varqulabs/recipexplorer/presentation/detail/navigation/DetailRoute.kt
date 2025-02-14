@@ -7,6 +7,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.varqulabs.recipexplorer.navigation.Routes
+import com.varqulabs.recipexplorer.presentation.detail.RecipeDetailEvent.Init
 import com.varqulabs.recipexplorer.presentation.detail.RecipeDetailScreen
 import com.varqulabs.recipexplorer.presentation.detail.RecipeDetailUiEffect
 import com.varqulabs.recipexplorer.presentation.detail.RecipeDetailViewModel
@@ -21,6 +22,8 @@ fun NavGraphBuilder.detailRoute(
 
         val state by viewModel.uiState.collectAsStateWithLifecycle()
         val eventHandler = viewModel::eventHandler
+
+        LaunchedEffect(state.reload) { if (state.reload) eventHandler(Init) }
 
         RecipeDetailScreen(
             state = state,

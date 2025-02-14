@@ -10,7 +10,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -21,7 +20,6 @@ import androidx.compose.ui.unit.dp
 import com.varqulabs.recipexplorer.core.presentation.generics.images.CoilImage
 import com.varqulabs.recipexplorer.core.presentation.generics.top_bars.DefaultAppBar
 import com.varqulabs.recipexplorer.core.presentation.utils.modifier.shimmerEffect
-import com.varqulabs.recipexplorer.presentation.detail.RecipeDetailEvent.Init
 import com.varqulabs.recipexplorer.presentation.detail.RecipeDetailEvent.OnBack
 import com.varqulabs.recipexplorer.presentation.detail.RecipeDetailEvent.OnOpenMapLocation
 import com.varqulabs.recipexplorer.presentation.detail.components.OriginFloatingButton
@@ -34,8 +32,6 @@ fun RecipeDetailScreen(
 ) {
 
     var expandedFAB by rememberSaveable { mutableStateOf(true) }
-
-    LaunchedEffect(state.reload) { if (state.reload) eventHandler(Init) }
 
     Scaffold(
         topBar = {

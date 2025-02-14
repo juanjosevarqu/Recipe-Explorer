@@ -40,8 +40,6 @@ import com.varqulabs.recipexplorer.core.presentation.generics.top_bars.DefaultAp
 import com.varqulabs.recipexplorer.core.presentation.utils.composables.screenHeight
 import com.varqulabs.recipexplorer.core.presentation.utils.modifier.clickableSingle
 import com.varqulabs.recipexplorer.domain.model.Recipe
-import com.varqulabs.recipexplorer.presentation.home.HomeRecipesEvent.Init
-import com.varqulabs.recipexplorer.presentation.home.HomeRecipesEvent.Loading
 import com.varqulabs.recipexplorer.presentation.home.HomeRecipesEvent.OnClickRecipe
 import com.varqulabs.recipexplorer.presentation.home.HomeRecipesEvent.OnSearchRecipe
 import com.varqulabs.recipexplorer.presentation.home.components.RecipeItem
@@ -56,10 +54,6 @@ fun HomeRecipesScreen(
 ) {
 
     val focusManager = LocalFocusManager.current
-
-    LaunchedEffect(state.reload) { if (state.reload) eventHandler(Init) }
-
-    LaunchedEffect(state.isLoading) { eventHandler(Loading(state.isLoading)) }
 
     var querySearch by remember { mutableStateOf("") }
     var isActive by rememberSaveable { mutableStateOf(false) }
