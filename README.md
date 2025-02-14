@@ -16,7 +16,7 @@ Se implementó una solución completa aplicando buenas prácticas y gestionando 
 
 ## 🎥 **Video Explicativo**
 Video de 15 minutos mostrando el proyecto y las etapas de desarrollo:
-- [Explicación del Proyecto Recipe Xplorer - Youtube](https://www.youtube.com/@juanjosevarqu)
+- ▶️ [Explicación del Proyecto Recipe Xplorer - Youtube](https://www.youtube.com/@juanjosevarqu)
 
 ---
 
