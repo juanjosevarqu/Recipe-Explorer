@@ -34,23 +34,23 @@ Video de 15 minutos mostrando el proyecto y las etapas de desarrollo:
 
 ## 🛠️ **Decisiones Técnicas**
 
-### **Arquitectura**
+### **Arquitectura**:
 Utilicé Clean Architecture para separar las capas de la aplicación:
-- **core**: Clases, funciones y componentes genéricos.
-- **data**: Capa de datos, incluye DTOs, servicios remotos y repositorios.
-- **domain**: Capa de dominio, modelos, interfaces, casos de uso.
-- **presentation**: Componentes de UI, vistas y ViewModels.
-- **di**: Modulos de inyección de dependencias con Hilt.
-- **navigation**: Rutas y gestion de la navegación de forma modular.
+- **/core**: Clases, funciones y componentes genéricos.
+- **/data**: Capa de datos, incluye DTOs, servicios remotos y repositorios.
+- **/domain**: Capa de dominio, modelos, interfaces, casos de uso.
+- **/presentation**: Componentes de UI, vistas y ViewModels.
+- **/di**: Modulos de inyección de dependencias con Hilt.
+- **/navigation**: Rutas y gestion de la navegación de forma modular.
 
-### **Patrón de presentacion MVI(derivado de MVVM)**
+### **Patrón de presentacion MVI(MVVM)**:
 Implementé el patrón MVI para una gestión de estado escalable y reactiva.
 En vistas complejas y/o con muchas interacciones, define un patrón unidireccional.
 
-### **Funciones de extensión**
+### **Funciones de extensión**:
 Las funciones de extensión son de ayuda para simplificar los archivos, mejorar la legibilidad y escalabilidad del proyecto.
 
-### **Componentes reutilizables**
+### **Componentes reutilizables**:
 Se buscó modularizar los componentes y hacerlos mas pequeños, para poder reutilizarlos y modificarlos facilmente.
 
 ---
