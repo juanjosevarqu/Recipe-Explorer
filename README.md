@@ -126,6 +126,7 @@ recipexplorer/
 ### **Mejoras Potenciales**
 - Separar el proyecto en módulos independientes.
 - Implementar un caso de uso base genérico con manejo de errores en la solicitudes a la API.
+- Migrar los textos a String Resources, facilita textos dinámicos.
 - Resolver conflictos de Pruebas de Ui instrumentadas. (Hilt + Compose)
 - +Test Unitarios que aporten valor.
 - +Test de Integración en puntos críticos.
