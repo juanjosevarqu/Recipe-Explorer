@@ -31,7 +31,7 @@ fun OriginFloatingButton(
         icon = {
             Icon(
                 imageVector = ImageVector.vectorResource(R.drawable.baseline_location_pin_24),
-                contentDescription = "Open Locaction",
+                contentDescription = "Abrir mapa",
                 modifier = Modifier.size(32.dp)
             )
         },

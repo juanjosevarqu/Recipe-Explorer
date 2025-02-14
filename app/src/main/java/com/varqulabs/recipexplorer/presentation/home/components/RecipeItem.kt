@@ -19,6 +19,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.varqulabs.recipexplorer.core.presentation.generics.images.CoilImage
@@ -44,7 +46,8 @@ fun RecipeItem(
             )
             .background(MaterialTheme.colorScheme.onSecondary, shape = RoundedCornerShape(24.dp))
             .clickableSingle(onClick = onClick)
-            .padding(14.dp),
+            .padding(14.dp)
+            .semantics { contentDescription = "Recipe item" },
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
 

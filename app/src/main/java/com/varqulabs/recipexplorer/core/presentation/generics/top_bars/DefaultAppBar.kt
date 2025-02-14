@@ -45,7 +45,7 @@ fun DefaultAppBar(
                 IconButton(onClick = onBack) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = "Boton atrás",
+                        contentDescription = "Volver atrás",
                         tint = contentColor,
                     )
                 }
